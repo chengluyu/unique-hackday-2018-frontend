@@ -1,7 +1,17 @@
 import { observable, action, computed } from 'mobx'
 
 class obs {
-  @observable content = ''
+  @observable user = {
+    name: null,
+    info: {
+      nick: null,
+      email: null,
+      gender: null,
+      birthday: null,
+      biography: null,
+      contact: []
+    }
+  }
   @computed get list() {
     return [1, 2, 3].map(x => this.content + x)
   }

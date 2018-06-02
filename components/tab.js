@@ -19,23 +19,14 @@ import { Actions } from 'react-native-router-flux'
 import { observer } from 'mobx-react'
 
 @observer class Index extends Component {
-  componentDidMount() {
-    if (this.props.store.user.name === null) {
-      Actions['login']({ type: 'replace' })
-    }
-  }
 
   render() {
     return (
       <Container>
         <Content>
-          <List dataArray={this.props.store.list} renderRow={
-            i => (
-              <ListItem>
-                <Text>{i}</Text>
-              </ListItem>
-            )
-          } />
+          <Text>
+            Aha
+          </Text>
         </Content>
       </Container>
     )
