@@ -7,19 +7,47 @@
 import React, { Component } from 'react';
 import { Root } from 'native-base';
 import { Scene, Router, ActionConst } from 'react-native-router-flux'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
+
 import Index from './components/index'
 import Search from './components/search'
 import Store from './store'
 import Login from './components/login'
 import Tab from './components/tab'
+import FriendList from './components/friendlist'
+import Profile from './components/profile'
+import MessageList from './components/messagelist'
 
 export default class App extends Component {
+  componentDidMount() {
+    this.updateWindowDimensions();
+  }
+
+  onLayout() {
+    Store.updateWindowSize([Dimensions.get('window').width, Dimensions.get('window').height])
+  }
+
+  updateWindowDimensions() {
+    Store.updateWindowSize([Dimensions.get('window').width, Dimensions.get('window').height])
+  }
+
   render() {
     let sceneList = [
       {
         key: 'index',
         component: Index
+      },
+      {
+        key: 'friendlist',
+        component: FriendList
+      },
+      {
+        key: 'profile',
+        component: Profile
+      },
+      {
+        key: 'messagelist',
+        component: MessageList
       },
       {
         key: 'login',
@@ -33,7 +61,7 @@ export default class App extends Component {
 
     return (
       <Root>
-        <Router store={Store} type={ActionConst.PUSH} hideNavBar={true}>
+        <Router store={Store} hideNavBar={true}>
           <Scene key='root'>
             {
               Scenes
