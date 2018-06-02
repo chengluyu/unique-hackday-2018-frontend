@@ -4,7 +4,7 @@ import ExtraDimensions from 'react-native-extra-dimensions-android'
 
 class obs {
   @observable user = {
-    name: 'mokunshen',
+    name: null,
     info: {
       nick: null,
       email: null,
@@ -22,9 +22,15 @@ class obs {
   }
 
   @action.bound
+  setUser(usr) {
+    this.user = usr
+    this.navigate('index')
+  }
+  @action.bound
   navigate(scene, params) {
     if (this.sceneMark === scene) return
     this.sceneMark = scene
+    this.editMode = false
     Actions[scene](params || { type: 'replace' })
   }
   @action.bound

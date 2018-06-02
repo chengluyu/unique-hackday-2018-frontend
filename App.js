@@ -17,6 +17,7 @@ import Tab from './components/tab'
 import FriendList from './components/friendlist'
 import Profile from './components/profile'
 import MessageList from './components/messagelist'
+// import HelpPage from './components/help'
 
 export default class App extends Component {
   componentDidMount() {
@@ -49,6 +50,10 @@ export default class App extends Component {
         key: 'messagelist',
         component: MessageList
       },
+      // {
+      //   key: 'help',
+      //   component: HelpPage
+      // },
       {
         key: 'login',
         component: Login,
