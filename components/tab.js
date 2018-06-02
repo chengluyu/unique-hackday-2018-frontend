@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { StyleSheet } from 'react-native'
 import {
   Container,
   Header,
@@ -21,16 +22,21 @@ import { observer } from 'mobx-react'
 @observer class Index extends Component {
 
   render() {
-    return (
-      <Container>
-        <Content>
-          <Text>
-            Aha
-          </Text>
-        </Content>
-      </Container>
-    )
+    if (this.props.store.sceneMark == 'login')
+      return null
+    else
+      return (
+        <Footer style={styles.dock}>
+        </Footer>
+      )
   }
 }
 
 export default Index
+
+const styles = StyleSheet.create({
+  dock: {
+    height: 70,
+    backgroundColor: '#2c2c2c'
+  }
+});

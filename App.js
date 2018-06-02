@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react';
-import { Root, Footer } from 'native-base';
+import { Root } from 'native-base';
 import { Scene, Router, ActionConst } from 'react-native-router-flux'
 import { StyleSheet } from 'react-native'
 import Index from './components/index'
@@ -40,8 +40,7 @@ export default class App extends Component {
             }
           </Scene>
         </Router>
-        <Footer style={styles.dock}>
-        </Footer>
+        <Tab store={Store} />
       </Root>
     );
   }
@@ -50,6 +49,8 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   dock: {
     height: 70,
+    maxHeight: 70,
+    minHeight: 70,
     zIndex: 1,
     position: 'absolute',
     bottom: 0,

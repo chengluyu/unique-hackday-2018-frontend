@@ -36,7 +36,7 @@ import { observer } from 'mobx-react'
             </Card>
             <Label style={styles.label}>密码</Label>
             <Card>
-              <Input placeholder="********" />
+              <Input placeholder="********" secureTextEntry={true} />
             </Card>
             <Text style={styles.right}>忘记密码？</Text>
             <Button style={styles.button} block dark><Text>登录</Text></Button>
@@ -55,7 +55,8 @@ const styles = StyleSheet.create({
   logo: {
     borderRadius: 16,
     marginTop: 24,
-    marginBottom: 16
+    marginBottom: 16,
+    alignSelf: 'center'
   },
   label: {
     color: '#000000',
@@ -68,6 +69,7 @@ const styles = StyleSheet.create({
   },
   button: {
     marginVertical: 8,
+    backgroundColor: '#2c2c2c'
   },
 });
 
