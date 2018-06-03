@@ -17,7 +17,9 @@ import Tab from './components/tab'
 import FriendList from './components/friendlist'
 import Profile from './components/profile'
 import MessageList from './components/messagelist'
-// import HelpPage from './components/help'
+import HelpPage from './components/help'
+import Chat from './components/chat'
+import People from './components/people_im_ui'
 
 export default class App extends Component {
   componentDidMount() {
@@ -50,18 +52,25 @@ export default class App extends Component {
         key: 'messagelist',
         component: MessageList
       },
-      // {
-      //   key: 'help',
-      //   component: HelpPage
-      // },
+      {
+        key: 'help',
+        component: HelpPage
+      },
+      {
+        key: 'chat',
+        component: Chat
+      },
+      {
+        key: 'peopledetail',
+        component: People
+      },
       {
         key: 'login',
-        component: Login,
-        index: styles.zStyle
+        component: Login
       }
     ]
     let Scenes = sceneList.map((a, i) => {
-      return <Scene sceneStyle={a.style || styles.defaultStyle} key={a.key} component={a.component} title={a.name || a.key} />
+      return <Scene key={a.key} component={a.component} title={a.name || a.key} />
     })
 
     return (
@@ -88,11 +97,5 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     left: 0
-  },
-  defaultStyle: {
-    zIndex: 1
-  },
-  zStyle: {
-    zIndex: 2
   }
 });

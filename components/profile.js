@@ -25,6 +25,7 @@ import TextSeparator from './assets/textSeparator'
 import { StyleSheet, Image } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { observer } from 'mobx-react'
+import config from '../config'
 
 @observer class Index extends Component {
   componentDidMount() {
@@ -45,33 +46,48 @@ import { observer } from 'mobx-react'
     return (
       <Content padder>
 
-        <Button iconLeft postion="topRight" style={styles.help}>
-        <Icon name='md-help-circle'/>
-          <Text>帮助</Text>
+        <Button rounded small iconCenter transparent style={styles.help} onLongPress={() => {
+          this.props.store.setUser({
+            name: null,
+            info: {
+              nick: null,
+              email: null,
+              gender: null,
+              birthday: null,
+              biography: null,
+              contact: []
+            }
+          })
+          fetch(`${config.remote}/logout`, {
+            method: 'GET'
+          })
+        }} onPress={() => this.props.store.navigate('help', { type: 'push' })}>
+          <Icon name='md-help-circle' />
+
         </Button>
         <Thumbnail large style={styles.contentImg} source={{ uri: "https://facebook.github.io/react-native/docs/assets/favicon.png" }} />
         {
           this.props.store.editMode === false ?
             [
-              <Text style={styles.imformation_title}> 用户名 </Text>,
-              <Text style={styles.imformation_con}> Unique Hackaday </Text>,
-              <Text style={styles.imformation_title}> 邮箱 </Text>,
-              <Text style={styles.imformation_con}> Hackaday@unique.com </Text>,
-              <Text style={styles.imformation_title}> 地点 </Text>,
-              <Text style={styles.imformation_con}> 武汉 </Text>
+              <Text key={0} style={styles.imformation_title}> 用户名 </Text>,
+              <Text key={1} style={styles.imformation_con}> Unique Hackaday </Text>,
+              <Text key={2} style={styles.imformation_title}> 邮箱 </Text>,
+              <Text key={3} style={styles.imformation_con}> Hackaday@unique.com </Text>,
+              <Text key={4} style={styles.imformation_title}> 地点 </Text>,
+              <Text key={5} style={styles.imformation_con}> 武汉 </Text>
             ]
             :
             [
-              <Text style={styles.imformation_title}> 用户名 </Text>,
-              <Card style={styles.imformation_card}>
+              <Text key={0} style={styles.imformation_title}> 用户名 </Text>,
+              <Card key={1} style={styles.imformation_card}>
                 <Input> </Input>
               </Card>,
-              <Text style={styles.imformation_title}> 邮箱 </Text>,
-              <Card style={styles.imformation_card}>
+              <Text key={2} style={styles.imformation_title}> 邮箱 </Text>,
+              <Card key={3} style={styles.imformation_card}>
                 <Input> </Input>
               </Card>,
-              <Text style={styles.imformation_title}> 地点 </Text>,
-              <Card style={styles.imformation_card}>
+              <Text key={4} style={styles.imformation_title}> 地点 </Text>,
+              <Card key={5} style={styles.imformation_card}>
                 <Input> </Input>
               </Card>]
 
@@ -101,13 +117,17 @@ const styles = StyleSheet.create({
   },
 
   help: {
-    height:10,
-    width:30
-    
+    position: "absolute",
+    //height:30,
+    //width:80,
+    //paddingHorizontal:-10,
+    top: 8,
+    right: 20
+
   },
 
   imformation_title: {
-    fontSize: 20
+    fontSize: 23
 
 
   },
@@ -116,11 +136,13 @@ const styles = StyleSheet.create({
     marginBottom: 14
   },
   contentImg: {
-    alignSelf:'center',
+    alignSelf: 'center',
     marginBottom: 30,
     marginTop: 20
-    
+
   },
+
+
 
   imformation_card: {
   },

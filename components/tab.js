@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, AsyncStorage } from 'react-native'
 import {
   Container,
   Header,
@@ -23,6 +23,14 @@ import { observer } from 'mobx-react'
 import ExtraDimensions from 'react-native-extra-dimensions-android'
 
 @observer class Index extends Component {
+  componentDidMount() {
+    (async () => {
+      this.props.store.setUser(JSON.parse(await AsyncStorage.getItem('@Hackintosh2018:config:user')))
+    })();
+    if (this.props.store.user.name === null) {
+      this.props.store.navigate('login')
+    }
+  }
 
   render() {
     let styles = StyleSheet.create({
@@ -47,7 +55,7 @@ import ExtraDimensions from 'react-native-extra-dimensions-android'
       }
     });
 
-    if (this.props.store.sceneMark === 'login')
+    if (this.props.store.sceneMark === 'login' || this.props.store.sceneMark === 'chat')
       return null
     else
       return (
@@ -58,10 +66,10 @@ import ExtraDimensions from 'react-native-extra-dimensions-android'
                 [
                   {
                     name: 'index',
-                    icon: 'search'
+                    icon: 'apps'
                   }, {
                     name: 'friendlist',
-                    icon: 'people'
+                    icon: 'search'
                   },
                   {
                     name: this.props.store.sceneMark,
