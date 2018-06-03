@@ -20,6 +20,7 @@ import MessageList from './components/messagelist'
 import HelpPage from './components/help'
 import Chat from './components/chat'
 import People from './components/people_im_ui'
+import Camera from './components/camera'
 
 export default class App extends Component {
   componentDidMount() {
@@ -63,6 +64,10 @@ export default class App extends Component {
       {
         key: 'peopledetail',
         component: People
+      },
+      {
+        key: 'camera',
+        component: Camera
       },
       {
         key: 'login',
